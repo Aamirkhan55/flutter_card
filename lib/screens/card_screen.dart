@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class CardScreen extends StatelessWidget {
@@ -15,8 +17,21 @@ class CardScreen extends StatelessWidget {
           ),
           ),
       ),
-      body: Card(
+      body: ListView.builder(
+        itemCount: 15,
+        itemBuilder: (context, index) {
+          return _cardItem();
+        }
+         )
+    );
+  }
+  
+ _cardItem () {
+  return Card(
+        color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+        margin: const EdgeInsets.all(10.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children:  [
             const ListTile(
               leading:  Icon(Icons.book),
@@ -28,17 +43,27 @@ class CardScreen extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {},
-                   child: const Text('Read'),
+                   child: const Text(
+                    'Read',
+                    style: TextStyle(
+                      color: Colors.black
+                    ),
+                    ),
                    ), 
                 TextButton(
                   onPressed: () {}, 
-                  child: const Text('UnRead'),
+                  child: const Text(
+                    'UnRead',
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                    ),
                   )
               ],
-            ) 
+            ),
             ],
         ),
-      ),
-    );
-  }
+      );
+} 
 }
+
